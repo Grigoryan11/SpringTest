@@ -1,11 +1,9 @@
 package am.basic.springTest.controller;
 
 
-
-
-import am.basic.springTest.model.Passport;
+import am.basic.springTest.model.Phone;
 import am.basic.springTest.model.exceptions.DuplicateDataException;
-import am.basic.springTest.service.PassportService;
+import am.basic.springTest.service.PhoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,41 +14,41 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/passport")
-public class PassportController {
-
+@RequestMapping("/phone")
+public class PhoneController {
     @Autowired
-    private PassportService passportService;
+    private PhoneService phoneService;
 
 
     @ResponseStatus(HttpStatus.ACCEPTED)
     @GetMapping(path = "/test1", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    List<Passport> getAllByBody() {
-        return passportService.getAll();
+    List<Phone> getAllByBody() {
+        return phoneService.getAll();
     }
-
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity getAll() {
-        return ResponseEntity.ok(passportService.getAll());
+        return ResponseEntity.ok(phoneService.getAll());
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity findById(@PathVariable int id) {
-        return ResponseEntity.of(passportService.findById(id));
+        return ResponseEntity.of(phoneService.findById(id));
     }
 
     @PostMapping(/*spasum a back@ */consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity add(@Valid @RequestBody Passport passport) throws DuplicateDataException {
-        return ResponseEntity.ok(passportService.save(passport));
+    public ResponseEntity add(@Valid @RequestBody Phone phone) throws DuplicateDataException {
+        return ResponseEntity.ok(phoneService.save(phone));
     }
 
     @PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity update(@PathVariable int id, @Valid @RequestBody Passport passport) throws DuplicateDataException {
-        passport.setId(id);
-        return ResponseEntity.ok(passportService.update(passport));
+    public ResponseEntity update(@PathVariable int id, @Valid @RequestBody Phone phone) throws DuplicateDataException {
+        phone.setId(id);
+        return ResponseEntity.ok(phoneService.update(phone));
     }
 
+
+
 }
+

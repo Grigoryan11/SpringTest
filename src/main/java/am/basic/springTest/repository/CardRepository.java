@@ -2,7 +2,7 @@ package am.basic.springTest.repository;
 
 
 import am.basic.springTest.model.Card;
-import com.sun.org.apache.xpath.internal.objects.XBoolean;
+//import com.sun.org.apache.xpath.internal.objects.XBoolean;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
